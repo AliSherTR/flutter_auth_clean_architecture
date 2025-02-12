@@ -6,7 +6,6 @@ class UserEntity extends Equatable {
   final String lastName;
   final String token;
 
-
   final String? role;
   final String? dateOfBirth;
   final String? phoneNumber;
@@ -35,6 +34,6 @@ class UserEntity extends Equatable {
         dateOfBirth,
         phoneNumber,
         image,
-        balance
+        balance,
       ];
 }
