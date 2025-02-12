@@ -10,7 +10,7 @@ class UserRepositoryImpl implements UserRepository {
   UserRepositoryImpl({required this.dataSource});
   @override
   Future<Either<String, UserEntity>> getMyDetails(String token) {
-    // TODO: implement getMyDetails
+    
     throw UnimplementedError();
   }
 
@@ -27,7 +27,7 @@ class UserRepositoryImpl implements UserRepository {
 
   @override
   Future<void> logout() {
-    // TODO: implement logout
+   
     throw UnimplementedError();
   }
 
