@@ -6,16 +6,17 @@ abstract class UserRemoteDataSource {
   Future<String> signUp(String firstName, String lastName, String email,
       String password, String confirmPassword);
   Future<UserModel> signIn(String email, String password);
+  Future<UserModel> getMyDetails(String token);
   Future<void> signOut();
 }
 
 class UserRemoteDataSourceImpl implements UserRemoteDataSource {
-  final Uri url = Uri.parse("https://alladin-ecommerce.koyeb.app/api/auth");
+  final Uri url = Uri.parse("https://alladin-ecommerce.koyeb.app/api");
 
   @override
   Future<UserModel> signIn(String email, String password) async {
     final response = await http.post(
-      "$url/login" as Uri,
+      "$url/auth/login" as Uri,
       body: jsonEncode(
         {
           "email": email,
@@ -42,7 +43,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
   Future<String> signUp(String firstName, String lastName, String email,
       String password, String confirmPassword) async {
     final response = await http.post(
-      "$url/register" as Uri,
+      "$url/auth/register" as Uri,
       body: jsonEncode(
         {
           'firstName': firstName,
@@ -60,6 +61,24 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
       return data["message"];
     } else {
       throw Exception(data['message'] ?? "Something went wrong!");
+    }
+  }
+
+  @override
+  Future<UserModel> getMyDetails(String token) async {
+    final response = await http.get(
+      "$url/users/me" as Uri,
+      headers: {
+        "Cookie": "access_token=$token",
+      },
+    );
+
+    final data = await jsonDecode(response.body);
+
+    if (response.statusCode == 200) {
+      return UserModel.fromJson(data["data"]);
+    } else {
+      return data["message"];
     }
   }
 }

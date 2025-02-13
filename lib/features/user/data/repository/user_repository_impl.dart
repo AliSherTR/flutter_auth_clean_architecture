@@ -9,9 +9,13 @@ class UserRepositoryImpl implements UserRepository {
 
   UserRepositoryImpl({required this.dataSource});
   @override
-  Future<Either<String, UserEntity>> getMyDetails(String token) {
-    
-    throw UnimplementedError();
+  Future<Either<String, UserEntity>> getMyDetails(String token) async {
+    try {
+      UserModel user = await dataSource.getMyDetails(token);
+      return Right(user);
+    } catch (e) {
+      return Left(e.toString());
+    }
   }
 
   @override
@@ -27,7 +31,6 @@ class UserRepositoryImpl implements UserRepository {
 
   @override
   Future<void> logout() {
-   
     throw UnimplementedError();
   }
 
