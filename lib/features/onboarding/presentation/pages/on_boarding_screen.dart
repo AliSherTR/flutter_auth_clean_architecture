@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:user_auth_clean_architecture/core/app_images.dart';
+import 'package:user_auth_clean_architecture/core/widgets/app_button.dart';
+import 'package:user_auth_clean_architecture/features/user/presentation/pages/login_page.dart';
 
 class OnBoardingScreen extends StatelessWidget {
   const OnBoardingScreen({super.key});
@@ -6,27 +9,32 @@ class OnBoardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Expanded(
-            child: Center(
-              child: Text(
-                "Hello and Welcome",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
+      body: Padding(
+        padding: EdgeInsets.only(left: 25 , right: 25),
+        child: Column(
+          children: [
+            SizedBox(
+              height: 30,
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(bottom: 40.0),
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: ElevatedButton(
-                onPressed: () {},
-                child: Text("Get Started"),
-              ),
+            Align(
+              alignment: Alignment.topCenter,
+              child: Image.asset(AppImages.onBoardingImage),
             ),
-          ),
-        ],
+            SizedBox(
+              height: 100,
+            ),
+            AppButton(
+                text: "Get Started",
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => LoginPage(),
+                    ),
+                  );
+                })
+          ],
+        ),
       ),
     );
   }
