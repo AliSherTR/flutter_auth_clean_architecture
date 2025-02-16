@@ -1,18 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:user_auth_clean_architecture/features/onboarding/presentation/pages/on_boarding_screen.dart';
+import 'package:user_auth_clean_architecture/core/widgets/utils/auth_guard.dart';
+import 'package:user_auth_clean_architecture/features/user/presentation/pages/login_page.dart';
+import 'package:user_auth_clean_architecture/features/user/presentation/pages/signup_page.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(MyApp());
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home:  OnBoardingScreen()
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const AuthGuard(),
+        '/login': (context) => const LoginPage(),
+        '/signup': (context) => const SignupPage(),
+      },
     );
   }
 }
