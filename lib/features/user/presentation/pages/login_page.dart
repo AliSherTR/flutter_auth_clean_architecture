@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:user_auth_clean_architecture/core/app_images.dart';
 import 'package:user_auth_clean_architecture/core/widgets/app_button.dart';
 import 'package:user_auth_clean_architecture/features/onboarding/presentation/widgets/auth_link.dart';
+import 'package:user_auth_clean_architecture/features/user/presentation/pages/signup_page.dart';
 import 'package:user_auth_clean_architecture/features/user/presentation/widgets/form_field.dart';
 
 class LoginPage extends StatelessWidget {
@@ -19,7 +21,15 @@ class LoginPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 100),
+              SizedBox(height: 20),
+               SizedBox(
+                height: 400,
+                width: 400,
+                child: Image.asset(
+                  AppImages.onBoardingImage,
+                  fit: BoxFit.contain,
+                ),
+              ),
               CustomFormField(hintText: "Enter Your Email"),
               SizedBox(height: 20),
               CustomFormField(
@@ -50,7 +60,14 @@ class LoginPage extends StatelessWidget {
                     SizedBox(
                       width: 5,
                     ),
-                    AuthLink("Sign Up", () {})
+                    AuthLink("Sign Up", () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SignupPage(),
+                        ),
+                      );
+                    })
                   ],
                 ),
               ),

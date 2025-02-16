@@ -14,7 +14,7 @@ class OnBoardingScreen extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(
-              height: 30,
+              height: 200,
             ),
             Align(
               alignment: Alignment.topCenter,
