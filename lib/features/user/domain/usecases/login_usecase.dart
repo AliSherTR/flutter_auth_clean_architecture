@@ -7,6 +7,7 @@ class LoginUsecase {
   LoginUsecase({required this.repository});
 
   Future<Either<String, UserEntity>> call(String email, String password) {
+    print("I RAN");
     return repository.login(email, password);
   }
 }

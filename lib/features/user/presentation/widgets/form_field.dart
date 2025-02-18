@@ -4,12 +4,14 @@ class CustomFormField extends StatelessWidget {
   final String hintText;
   final bool isPassword;
   final TextEditingController? controller;
+  final FormFieldValidator<String>? validator;
 
   const CustomFormField({
     super.key,
     required this.hintText,
     this.isPassword = false,
     this.controller,
+    this.validator
   });
 
   @override
@@ -23,6 +25,7 @@ class CustomFormField extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
       ),
+      validator: validator,
     );
   }
 }
