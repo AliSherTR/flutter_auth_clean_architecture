@@ -25,7 +25,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
       ),
     );
 
-    final data = jsonDecode(response.body);
+    final data = await jsonDecode(response.body);
 
     if (response.statusCode == 200) {
       return UserModel.fromJson(data['data']);
